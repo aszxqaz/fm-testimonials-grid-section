@@ -1,0 +1,212 @@
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("./assets/fonts/BarlowSemiCondensed/BarlowSemiCondensed-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("./assets/fonts/BarlowSemiCondensed/BarlowSemiCondensed-SemiBold.ttf");
+  font-weight: 600;
+}
+
+:root {
+  --c-black: rgb(18, 18, 18);
+  --c-dark-blue: rgb(25, 32, 45);
+  --c-white: rgb(255, 255, 255);
+  --c-grey-100: rgb(231, 234, 238);
+  --c-grey-200: rgb(207, 207, 207);
+  --c-grey-300: rgb(163, 170, 180);
+  --c-grey-400: rgb(103, 109, 126);
+  --c-grey-500: rgb(72, 85, 106);
+  --c-purple-50: rgb(237, 228, 255);
+  --c-purple-300: rgb(167, 117, 241);
+  --c-purple-500: rgb(115, 63, 200);
+
+  --ff-base: "Barlow Semi Condensed";
+  --fs-md: 0.8125rem;
+  --fw-md: 500;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: rgb(246, 245, 246);
+  font-family: var(--ff-base);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-md);
+}
+
+.page-layout {
+  display: grid;
+  --padding: clamp(2rem, 0.33rem + 7.12vw, 3.75rem);
+  grid-template-columns: var(--padding) 1fr var(--padding);
+  > * {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (min-width: 1240px) {
+  .page-layout {
+    padding-top: 0;
+    grid-template-rows: 1fr auto;
+  }
+}
+
+.centered {
+  display: grid;
+  place-items: center;
+}
+
+.y-spaced {
+  padding-block: 4.5rem;
+}
+
+.t-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 600px) {
+  .t-grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 647px;
+  }
+
+  .t-grid__item:nth-child(1),
+  .t-grid__item:nth-child(4),
+  .t-grid__item:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1240px) {
+  .t-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 1114px;
+  }
+
+  .t-grid__item:nth-child(5) {
+    grid-column: 4 / 5;
+    grid-row: 1 / 3;
+  }
+
+  .y-spaced {
+    padding-block: 0;
+  }
+}
+
+.t-card {
+  height: 100%;
+  display: grid;
+  align-content: flex-start;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--t-card-bg-color, white);
+  box-shadow: 40px 60px 50px -47px color-mix(in srgb, var(--c-grey-500) 24%, transparent);
+}
+
+.t-card__profile {
+  margin-block-end: 1rem;
+  --profile-fullname-color: var(--t-card-title-color, var(--c-grey-500));
+  --profile-status-color: var(--t-card-description-color, var(--c-grey-300));
+}
+
+.t-card__title {
+  grid-row-start: 2;
+  margin-block-end: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--t-card-title-color, var(--c-grey-500));
+}
+
+.t-card__description {
+  font-size: 0.8125rem;
+  line-height: 1.385;
+  color: var(--t-card-description-color, var(--c-grey-400));
+}
+
+.t-card--purple {
+  --t-card-bg-color: var(--c-purple-500);
+  --t-card-title-color: var(--c-white);
+  --t-card-description-color: var(--c-purple-50);
+}
+
+.t-card--grey {
+  --t-card-bg-color: var(--c-grey-500);
+  --t-card-title-color: var(--c-white);
+  --t-card-description-color: var(--c-purple-50);
+
+  > .t-card__profile {
+    --profile-status-color: var(--c-grey-300);
+  }
+}
+
+.t-card--dark {
+  --t-card-bg-color: var(--c-dark-blue);
+  --t-card-title-color: var(--c-grey-200);
+  --t-card-description-color: var(--c-grey-100);
+
+  > .t-card__profile {
+    --profile-status-color: var(--c-white);
+    --profile-fullname-color: var(--c-white);
+  }
+}
+
+.profile {
+  display: flex;
+  gap: 1.0625rem;
+  height: 1.875rem;
+}
+
+.profile__avatar {
+  width: 1.75rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.profile__stack {
+  display: grid;
+  justify-content: space-between;
+}
+
+.profile__fullname {
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--profile-fullname-color);
+}
+
+.profile__status {
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--profile-status-color);
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
